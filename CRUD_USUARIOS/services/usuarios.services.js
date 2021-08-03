@@ -1,0 +1,74 @@
+//Importo los modulos necesarios
+const dbUsuarios = require('../db/dbUsuarios')
+const jwt = require('jsonwebtoken')
+
+
+//Exporto los modulos de trabajo
+
+module.exports.listaUsuarios = async ()=>{
+    try {
+        let resultado = await dbUsuarios.usuarios()
+        return resultado
+    }catch (err){
+        console.log(`error en services lista usuarios:${err}`)
+        throw new Error ('Ocurrio un error en la consulta')
+    }
+}
+
+module.exports.crearUsuarios = async (usuario)=> {
+    let usrNuevo = [
+        usuario.nombre,
+        usuario.apellido,
+        usuario.usuario,
+        usuario.password,
+        usuario.correo
+    ]
+    try {
+        let resultado = await dbUsuarios.nuevoUsuario(usrNuevo)
+        if (resultado) {
+            return 'Alta de usuario correcta'
+        }else {
+            
+            throw new Error ('Error en la creacion del usuario o el usuario ya existe')
+        }
+
+    }catch (err) {
+        console.log(`error en services cerar usuario:${err}`)
+        throw new Error ('Error en la creacion del usuario')
+    }
+}
+
+module.exports.chequearUsrValido = async (usr)=>{
+    try {
+        let resultado = await dbUsuarios.usuarioExistente (usr)
+        console.log(resultado)
+        if (resultado) {
+            return resultado
+        }else {
+            throw new Error ('No existe el Usuario')
+        }
+    }catch (err) {
+        console.log(`error en usuarios services chequearusr valido:${err}`)
+        throw new Error (err)
+    }
+}
+
+module.exports.generaToken = async (payload)=> {
+    delete payload.password;
+    const token = jwt.sign({
+        data: payload} , 
+        process.env.JWT_SEED, 
+        {expiresIn: '24h'}
+    ) 
+    return token
+}
+
+module.exports.verificacionUsuario = async (token)=> {
+    const resultado = jwt.verify(token, process.env.SECRET_KEY)
+
+    if(resultado){
+        return resultado
+    }else {
+        throw new Error ('Token no valido!')
+    }
+}
