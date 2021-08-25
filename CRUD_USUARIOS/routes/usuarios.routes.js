@@ -46,7 +46,7 @@ module.exports = (app)=> {
         try{
             const usuario = req.body
             let resultado = usuariosService.crearUsuarios(usuario)
-            res.json(resultado)
+            res.status(200).send('usuario creado')
 
         }catch(err){
             console.log(err)
