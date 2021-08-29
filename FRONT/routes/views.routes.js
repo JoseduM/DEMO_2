@@ -9,6 +9,7 @@ module.exports = (app) => {
 
   router.get('/signin', viewsController.signin)
 
+  router.get('/administrador', viewsController.administrador)
 
   
   app.use(router)

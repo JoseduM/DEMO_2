@@ -13,6 +13,7 @@ module.exports = (app) => {
 
     app.post('/articulos', async (req,res) => {
         let articulo = req.body
+        console.log(articulo)
         try {
             let resultado = await articulosServices.nuevoArticulo(articulo)
             console.log(resultado)
@@ -22,7 +23,18 @@ module.exports = (app) => {
             res.status(500).json({error: error.message})
         }
     })
-
+    app.delete('/articulo', async (req,res) => {
+        let articulo = req.body;
+        console.log(articulo);
+        try{
+            let resultado = await articulosServices.borrarArticulo(articulo)
+            console.log(resultado)
+            res.json('Articulo borrado')
+        }catch(error){
+            console.log('algo raro pasó');
+            throw new Error('Error en el delete')
+        }
+    })
     app.post('/agregararticulo', async (req,res) => {
         let articulo = req.body
          try {
@@ -35,12 +47,12 @@ module.exports = (app) => {
          }
     })
 
-    app.post('/actualizarprecio', async (req,res) => {
+    app.post('/actualizar', async (req,res) => {
         let articulo = req.body
         try {
-            let resultado = await articulosServices.actualizarPrecio(articulo)
+            let resultado = await articulosServices.actualizarArticulo(articulo)
             console.log(resultado)
-            res.json('Precio Actualizado')
+            res.json('Articulo Actualizado')
         } catch (error) {
             console.log(error.message)
             res.status(500).json({error:error.message})            

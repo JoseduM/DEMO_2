@@ -6,11 +6,12 @@ const sequelize = require('./db/conexion');
 const articulosRoutes = require('./routes/articulos.routes');
 // Importación rutas
 const categoriasRoute = require('./routes/categorias.routes')
+const cors = require('cors');
 
 //Middlewares globales
 app.use(express.json());
 app.use(express.urlencoded({ extended : true}));
-
+app.use(cors());
 
 //inico de servidor
 async function inicioServidor() {
