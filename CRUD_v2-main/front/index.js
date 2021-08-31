@@ -92,7 +92,7 @@ async function mostrarOpcionesCategorias(objetoConsulta) {
         console.log(er)
     }
 }
-
+ 
 const seleccionCategoria=document.getElementById("seleccionarCategoria")
 
 seleccionCategoria.onclick = () => {

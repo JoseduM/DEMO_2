@@ -5,9 +5,6 @@ const sequelize = require('./conexion.usarios')
 
 module.exports.nuevoUsuario = async (usr)=> {
     try {
-        console.log('nuevoUsuario dentro')
-        console.log(usr)
-
         let resultado = await sequelize.query(`SELECT * FROM usuarios WHERE apellido = '${usr[1]}'`);
         if (resultado.lenght > 0){
             return false
@@ -31,7 +28,7 @@ module.exports.usuarioExistente = async (usr)=>{
         if (resultado != undefined) {
             let chequeado = await sequelize.query(`SELECT * FROM usuarios WHERE usuarios.password = '${usuario[1]}'`);
             if (chequeado != undefined) {
-                return      
+                return  true  
             }else {
                 return false
             }
@@ -39,7 +36,7 @@ module.exports.usuarioExistente = async (usr)=>{
             return false
         }
     }catch (err) {
-        console.log(err)
+        console.log('usuario Existente')
         throw new Error (err)
     }
 }

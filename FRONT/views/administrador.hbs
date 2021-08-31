@@ -1,0 +1,84 @@
+<div class='container'>
+  <form id='formSelectMenu' class='form'>
+
+    <select id='select' name='categoria'>
+
+    </select>
+
+  </form>
+
+  <button id='buttonSelect'>select</button>
+</div>
+
+<!-- bton para abrir el modal de editar tabla-->
+
+
+
+<div clas='container mt-4 shadow-lg p-3 mb-5 bg-body rounded'>
+  <button id='btnCrear' type="button" class="btn btn-primary" data-bs-toggle="modal">Crear</button>
+  <table id='tablaArticulos' class='table mt-2 table-bordered table-striped'>
+    <thead>
+      <tr class='text-center'>
+        <th>ID_item</th>
+        <th>Descripcion</th>
+        <th>Categoria</th>
+        <th>Disponibilidad</th>
+        <th>Precio</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id='tbody'>
+
+    </tbody>
+
+
+  </table>
+</div>
+
+
+
+
+
+<!--modal crear articulo-->
+<div id='modalArticulo' class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="exampleModalLabel">Agregar artículo</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id='formArticulo'>
+
+          <div class='input-contenedor'>
+            <i class="fa fa-id-card icon"></i>
+            <input id='id' type="text" placeholder="ID" name='id'>
+          </div>
+
+          <div class='input-contenedor'>
+            <i class="fa fa-archive icon"></i>
+            <input id='descripcion' type="text" placeholder="Descripcion" name='descripcion'>
+          </div>
+
+          <div class='input-contenedor'>
+            <i class="fa fa-list-ol icon"></i>
+            <input id='disponibilidad' type="number" placeholder="Disponibilidad" name='disponibilidad'>
+          </div>
+
+          <div class='input-contenedor'>
+            <i class="fa fa-usd icon"></i>
+            <input id='precio' type="number" placeholder="Precio (MXN)" name='precio'>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button id='guardar' type="button" class="btn btn-primary">Guardar</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+<script src='../public/js/administrador.js' type='module'></script>

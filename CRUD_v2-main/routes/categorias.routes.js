@@ -23,8 +23,9 @@ module.exports = (app) => {
         }
     })
 
-    app.get('/categorias/articulos', middCategorias.existeCategoria ,async (req,res) => {
+    app.post('/categorias/articulos', middCategorias.existeCategoria ,async (req,res) => {
         let categoria = req.body
+        console.log(req.body)
         try {
             let resultado = await categoriasServices.articulosCategoria(categoria)
             res.json(resultado[0])

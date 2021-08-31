@@ -4,7 +4,7 @@ module.exports.nuevaCategoria = async (categoria) => {
     let newCat = [ categoria.id , categoria.nombre ]
 
     try {
-        let resultado = await sequelize.query(`INSERT INTO categorias (id_cat, nom_cat) VALUES (?,?)`,
+        let resultado = await sequelize.query(`INSERT INTO categorias (id, nombre) VALUES (?,?)`,
         {replacements: newCat, type: sequelize.QueryTypes.INSERT});
         return 'Nueva categoría agregada'
     } catch (error) {

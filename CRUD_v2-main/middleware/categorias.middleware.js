@@ -4,7 +4,10 @@ const sequelize = require('../db/conexion')
 
 module.exports.existeCategoria = async (req,res,next) => {
     try {
-        let result = await sequelize.query(`SELECT * FROM categorias WHERE id_cat = '${req.body.id}' LIMIT 1`)
+        console.log('antes')
+        let result = await sequelize.query(`SELECT * FROM categorias WHERE id = '${req.body.id}' `)
+        console.log('despues del result')
+        console.log(result)
         if (result[0].length === 0) {
             res.status(404).json({error: 'La categoria no existe'})
             throw new Error('La categoria no existe.')
@@ -18,7 +21,7 @@ module.exports.existeCategoria = async (req,res,next) => {
 
 module.exports.validacionCategoria = async (req,res,next) => {
     try {
-        let result = await sequelize.query(`SELECT * FROM categorias WHERE id_cat = '${req.body.id}' LIMIT 1`)
+        let result = await sequelize.query(`SELECT * FROM categorias WHERE id = '${req.body.id}' LIMIT 1`)
         if (result[0].length === 0) {
             return next()
         } else {
